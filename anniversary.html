@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Anniversary, Anjali ❤️</title>
+    <meta name="description" content="A special anniversary website for Anjali." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Handwriting + Elegant fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <!-- Soft start overlay to satisfy autoplay policies -->
+    <div id="start-overlay">
+        <div class="start-card">
+            <h2>Ready for your surprise? 💖✨</h2>
+            <p>Tap below to start the music and begin our journey 🎵💕</p>
+            <button id="start-experience">🌟 Start the Experience 🌟</button>
+        </div>
+    </div>
+
+    <!-- Floating hearts/petals container -->
+    <div id="falling-layer" aria-hidden="true"></div>
+
+    <header id="hero" class="section">
+        <nav id="top-nav">
+            <a href="#hero">Home</a>
+            <a href="#timeline">Our Journey</a>
+            <a href="#love-letter">Love Letter</a>
+            <a href="#gallery">Memories</a>
+            <a href="#quiz">Fun Quiz</a>
+            <a href="#future">Future & Countdown</a>
+            <a href="#secret">Secret</a>
+            <a href="#final">Final</a>
+        </nav>
+
+        <div class="hero-content">
+            <h1>Happy Anniversary,<br> My Pumkin 💝</h1>
+            <p id="typewriter" class="typewriter"
+                data-text='"You are my favorite place to go when my mind searches for peace."'></p>
+            <div class="cta-row">
+                <a class="btn primary" href="#timeline">Start Scrolling</a>
+            </div>
+        </div>
+
+        <!-- Background song: replace with your song -->
+        <audio id="bg-music" loop preload="auto">
+            <source src="./assets/audio/your_song.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Stretching animation elements -->
+        <div class="stretch-bottom"></div>
+        <div class="stretch-left"></div>
+        <div class="stretch-right"></div>
+    </header> <!-- O
+ur Journey Timeline -->
+    <section id="timeline" class="section">
+        <h2 class="scroll-animate">💕 Our Journey Together 💕</h2>
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <article class="timeline-item scroll-animate-left">
+                <div class="media">
+                    <img src="./assets/images/KA.jpg" alt="The day we met">
+                </div>
+                <div class="content">
+                    <h3>✨ First Kaleshi Garden Date ✨</h3>
+                    <time datetime="2020-02-14">💝 11 Nov 2024</time>
+                    <p>I still Remember the Day, The purpose Of that meeting was to Resolve some conflict Between us
+                        But After Solving that conflict I never Imagined that Day will become the One of the Best
+                        Memmory of my Life
+                        that i will
+                        treasure forever in my heart. 😍💫</p>
+                    <audio controls class="voice-note">
+                        <source src="./assets/audio/v1.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </article>
+            <!-- Timeline Item 2 -->
+            <article class="timeline-item scroll-animate-right">
+                <div class="media">
+                    <img src="./assets/images/uf.jpg" alt="Our first trip">
+                </div>
+                <div class="content">
+                    <h3>💐 Our Unofficial Date 💐</h3>
+                    <time datetime="2021-08-10">✈️ 18 Nov 2024</time>
+                    <p>The Day We met Eachother And decided to have Some Good Quality Time, But That Day i Saw My cutie
+                        In a very
+                        Sexy Dress ,my heart skiped a beat and I was be like "God sub ku6 lelo but ye dedo muj ap" 🗺️💕
+                    </p>
+                    <audio controls class="voice-note">
+                        <source src="./assets/audio/v2.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </article>
+            <!-- Timeline Item 3 -->
+            <article class="timeline-item scroll-animate-left">
+                <div class="media">
+                    <img src="./assets/images/First Date.jpg" alt="Now and Always">
+                </div>
+                <div class="content">
+                    <h3>🏠 Finally Our Official Date 🏠</h3>
+                    <time datetime="2025-02-14">💖 19 Jan 2025</time>
+                    <p>From the first hello to forever—thank you for being my home. For The Day, I was waiting For a
+                        very Long
+                        time, I Officaly Proposed My Girl And Make her mine🌟💞</p>
+                    <audio controls class="voice-note">
+                        <source src="./assets/audio/v3.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </article>
+            <article class="timeline-item scroll-animate-right">
+                <div class="media">
+                    <img src="./assets/images/Hotel.jpg" alt="Our first trip">
+                </div>
+                <div class="content">
+                    <h3>💞 First NightOver 💞</h3>
+                    <time datetime="2021-08-10">✈️ 30 Mar 2025</time>
+                    <p> The Night We Stayed Together, Had so much fun, We Played so many Games Clicked so many picture
+                        and Cuddle
+                        Eachother, One of the Best Day of my Life. 🗺️💕</p>
+                    <audio controls class="voice-note">
+                        <source src="./assets/audio/v4.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </article>
+            <article class="timeline-item scroll-animate-left">
+                <div class="media">
+                    <video controls preload="metadata" poster="./assets/images/Trip.jpg" width="100%" height="auto"
+                        playsinline>
+                        <source src="./assets/videos/Trip.mp4" type="video/mp4">
+                        <source src="./assets/video/trip.mp4" type="video/mp4">
+                        <source src="./assets/video/Trip.MP4" type="video/mp4">
+                        <source src="./assets/videos/trip.mp4" type="video/mp4">
+                        <source src="./assets/videos/Trip.MP4" type="video/mp4">
+                        <source src="assets/video/Trip.mp4" type="video/mp4">
+                        <source src="assets/videos/Trip.mp4" type="video/mp4">
+                        Your browser does not support the video tag. Video file not found.
+                    </video>
+                </div>
+                <div class="content">
+                    <h3> ✈️ Over First Trip Together ✈️</h3>
+                    <time datetime="2025-02-14">💖 08 July 2025</time>
+                    <p>That day we had sooo much fun together, We laugh Together , Dance Together As you can see in the
+                        video ,
+                        Again non Forgattable Movements of my Life🌟💞</p>
+                    <audio controls class="voice-note">
+                        <source src="./assets/audio/v5.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Love Letter -->
+    <section id="love-letter" class="section">
+        <h2 class="scroll-animate">💌 My Love Letter to You 💌</h2>
+        <div class="letter-paper scroll-animate-scale">
+            <div class="writing-hand">
+                <div class="hand-with-pen">
+                    <div class="hand">✍️</div>
+                    <div class="pen"></div>
+                </div>
+            </div>
+            <div id="letter-handwrite" class="handwriting"
+                data-text="My Dear Pumkin 🎃,
+
+      Today marks our very first anniversary 🥳 — one whole year of us. Honestly, it feels like we've lived a whole movie 🎬 in these 365 days — full of laughter, little fights, crazy memories, and so much love.
+
+      We've had our fair share of ups and downs. I know I have my serious anger issues 😔, and I'm not always easy to handle… but still, you've chosen to stick with this Bhoudhu. That means more to me than I can ever put into words.
+      
+      You've shown me love in ways I never imagined — not just in words, but in every little effort you've made for me. From the handmade Harry Potter book 📖, to the pillow covers, those adorable bows 🎀, and the cute squishy that makes me smile every time I see it — each gift holds a piece of your heart.
+      
+      Thank you for loving me as I am, for accepting my flaws, for being my safe place, and for never giving up on us. You're not just my girlfriend — you're my best friend, my happiness, my "
+                cutie pumpkin" 🎃. Here's to our first year 🥂 and to many, many more to come. I promise I'll keep
+                learning, keep growing, and keep loving you more every single day ❤️. Happy Anniversary, my love. ❤️
+                Forever Yours, Your Billa 🐱 "></div>
+    </div>
+  </section>
+
+  <!-- Love Confession Animation -->
+  <section id=" love-confession" class="section">
+                <h2 class="scroll-animate">💐 My Love Confession 💐</h2>
+                <div class="confession-container scroll-animate">
+                    <div class="confession-scene">
+                        <!-- Animated characters -->
+                        <div class="character-me">
+                            <div class="stick-figure me">
+                                <div class="head"></div>
+                                <div class="body"></div>
+                                <div class="arms">
+                                    <div class="arm left"></div>
+                                    <div class="arm right holding-flowers"></div>
+                                </div>
+                                <div class="legs">
+                                    <div class="leg left"></div>
+                                    <div class="leg right"></div>
+                                </div>
+                            </div>
+                            <div class="character-label">Nick</div>
+                        </div>
+
+                        <div class="flowers-bouquet">
+                            <div class="flower flower-1">🌹</div>
+                            <div class="flower flower-2">🌹</div>
+                            <div class="flower flower-3">🌹</div>
+                            <div class="flower flower-4">🌹</div>
+                            <div class="flower flower-5">🌹</div>
+                        </div>
+
+                        <div class="character-you">
+                            <div class="stick-figure you">
+                                <div class="head"></div>
+                                <div class="body"></div>
+                                <div class="arms">
+                                    <div class="arm left"></div>
+                                    <div class="arm right"></div>
+                                </div>
+                                <div class="legs">
+                                    <div class="leg left"></div>
+                                    <div class="leg right"></div>
+                                </div>
+                            </div>
+                            <div class="character-label">Anjali</div>
+                        </div>
+
+                        <!-- Floating hearts -->
+                        <div class="confession-hearts">
+                            <div class="confession-heart heart-1">💖</div>
+                            <div class="confession-heart heart-2">💕</div>
+                            <div class="confession-heart heart-3">💝</div>
+                            <div class="confession-heart heart-4">💗</div>
+                            <div class="confession-heart heart-5">💞</div>
+                        </div>
+
+                        <!-- Speech bubble -->
+                        <div class="speech-bubble">
+                            <p id="confession-text">Will you be mine forever? 💍</p>
+                        </div>
+
+                        <!-- Ground line -->
+                        <div class="ground-line"></div>
+                    </div>
+
+                    <div class="confession-controls">
+                        <button id="play-confession" class="btn primary">▶️ Play Love Story</button>
+                        <button id="replay-confession" class="btn ghost" style="display: none;">🔄 Replay</button>
+                    </div>
+                </div>
+    </section> <!-- Timel
+ine Steps -->
+    <section id="timeline-steps" class="section">
+        <h2 class="scroll-animate">💕 Our Love Story Steps 💕</h2>
+        <div class="love-timeline">
+
+            <div class="timeline-step left" data-step="1">
+                <div class="step-dot">1</div>
+                <div class="step-info">
+                    <h4>👀 First Glance</h4>
+                    <p>The moment our eyes met</p>
+                    <span class="date">March 2023</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient1)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timeline-step right" data-step="2">
+                <div class="step-dot">2</div>
+                <div class="step-info">
+                    <h4>💬 First time Flirt</h4>
+                    <p>Our first Spicy conversation</p>
+                    <span class="date">15 Oct 24</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient2)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timeline-step left" data-step="3">
+                <div class="step-dot">3</div>
+                <div class="step-info">
+                    <h4>☕ First Hug</h4>
+                    <p>Had Some Snacks In Tea-post</p>
+                    <span class="date">26 Oct 24</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient3)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timeline-step right" data-step="4">
+                <div class="step-dot">4</div>
+                <div class="step-info">
+                    <h4>💖 First Kiss</h4>
+                    <p>"Surrounded by nature's gentle embrace"🌿</p>
+                    <span class="date">11 Nov 2020</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient4)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timeline-step left" data-step="5">
+                <div class="step-dot">5</div>
+                <div class="step-info">
+                    <h4>🏠 First Date </h4>
+                    <p>Our First And The Best Moments</p>
+                    <span class="date">19 Jan 2025</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient5)" />
+                    </svg>
+                </div>
+            </div>
+            <div class="timeline-step right" data-step="6">
+                <div class="step-dot">6</div>
+                <div class="step-info">
+                    <h4>💍 The Proposal</h4>
+                    <p>Will you Be my Girl Friend</p>
+                    <span class="date">19 Jan 2025</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient7" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient7)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timeline-step left" data-step="7">
+                <div class="step-dot">7</div>
+                <div class="step-info">
+                    <h4>✈️ First Trip</h4>
+                    <p>Adventures around the world</p>
+                    <span class="date">08 July 2025</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient6" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient6)" />
+                    </svg>
+                </div>
+            </div>
+            <div class="timeline-step right" data-step="8">
+                <div class="step-dot">8</div>
+                <div class="step-info">
+                    <h4>🏠 First NightStand </h4>
+                    <p>The Best Moments</p>
+                    <span class="date">30 Mar 25</span>
+                </div>
+                <div class="connecting-line">
+                    <svg>
+                        <defs>
+                            <linearGradient id="lineGradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#c44569;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0 0 L 200 0 L 200 120" stroke="url(#lineGradient5)" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="timeline-step left" data-step="∞">
+                <div class="step-dot">∞</div>
+                <div class="step-info">
+                    <h4>🌟 Forever</h4>
+                    <p>Our endless love story</p>
+                    <span class="date">Always</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Memory Gallery -->
+    <section id="gallery" class="section">
+        <h2 class="scroll-animate">📸 Memory Gallery 📸</h2>
+
+        <h3 class="scroll-animate">🎬 Photos & Videos 🎬</h3>
+        <div class="grid-gallery">
+            <!-- Replace with your media -->
+            <img src="./assets/images/Hotel.jpg" alt="Memory 1" class="scroll-animate-scale">
+            <img src="./assets/images/mask.jpg" alt="Memory 2" class="scroll-animate-scale">
+            <video controls src="./assets/videos/pushpa.mp4" class="scroll-animate-scale"></video>
+            <img src="./assets/images/godi.jpg" alt="Memory 3" class="scroll-animate-scale">
+            <video controls src="./assets/videos/hotel.mp4" class="scroll-animate-scale"></video>
+            <video controls src="./assets/videos/Kiss.mp4" class="scroll-animate-scale"></video>
+        </div>
+
+        <div class="random-memory scroll-animate">
+            <h3>🎲 Random Memory Generator 🎲</h3>
+            <div class="memory-card">
+                <img id="random-memory-image" src="./assets/images/KA.jpg" alt="Random memory">
+                <p id="random-memory-text">Click the button to reveal a sweet memory! 💭✨</p>
+            </div>
+            <button id="random-memory-btn" class="btn">🎯 Show a Memory</button>
+        </div>
+
+        <div class="before-after scroll-animate">
+            <h3>⏰ Then vs. Now ⏰</h3>
+            <div class="ba-wrapper">
+                <img class="ba-img ba-before" src="./assets/images/before.jpg" alt="Then">
+                <img class="ba-img ba-after" src="./assets/images/after.jpg" alt="Now">
+                <input id="ba-slider" type="range" min="0" max="100" value="50" aria-label="Before After Slider">
+            </div>
+        </div>
+    </section> <!- - Quiz / Fun Game -->
+        <section id="quiz" class="section">
+            <h2 class="scroll-animate">🤔 How well do you know me? 🤔</h2>
+            <form id="quiz-form">
+                <div class="q scroll-animate">
+                    <label>🍽️ My favorite cuisine is:</label>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="italian"> 🍝 Italian</label>
+                        <label><input type="radio" name="q1" value="indian" data-correct="true"> 🍛 You</label>
+                        <label><input type="radio" name="q1" value="japanese"> 🍣 Japanese</label>
+                    </div>
+                </div>
+                <div class="q scroll-animate">
+                    <label>✈️ Where would I love to go?</label>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="bali" data-correct="true"> 🏝️ Santorini</label>
+                        <label><input type="radio" name="q2" value="swiss"> 🏔️ Swiss Alps</label>
+                        <label><input type="radio" name="q2" value="nyc"> 🗽 NYC</label>
+                    </div>
+                </div>
+                <div class="q scroll-animate">
+                    <label>🎬 My comfort movie is:</label>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="inception"> 🌀 Inception</label>
+                        <label><input type="radio" name="q3" value="hp" data-correct="true"> ⚡ Harry Potter</label>
+                        <label><input type="radio" name="q3" value="up"> 🎈 Up</label>
+                    </div>
+                </div>
+                <div class="q scroll-animate">
+                    <label>💕 What do I love most about you?</label>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="smile" data-correct="true"> 😊 All of the
+                            Below</label>
+                        <label><input type="radio" name="q4" value="style"> ✨ Your style</label>
+                        <label><input type="radio" name="q4" value="voice"> 🎵 Your voice</label>
+                    </div>
+                </div>
+                <div class="q scroll-animate">
+                    <label>🌅 What are you to me? :</label>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="morning" data-correct="true"> ☕ Morning Like
+                            coffee</label>
+                        <label><input type="radio" name="q5" value="sunset" data-correct="true"> 🌅 Sunset Like
+                            Joy</label>
+                        <label><input type="radio" name="q5" value="night" data-correct="true"> 🌙 Late-night Like Peace
+                        </label>
+                    </div>
+                </div>
+                <div class="quiz-submit-container">
+                    <button type="submit" class="btn primary quiz-submit-btn scroll-animate">🎯 Submit Quiz</button>
+                </div>
+            </form>
+            <div id="quiz-result" class="quiz-result" aria-live="polite"></div>
+        </section>
+
+        <!-- How We Match - Compatibility Card -->
+        <section id="compatibility" class="section">
+            <h2 class="scroll-animate">💕 Our Love Connection 💕</h2>
+
+            <div class="love-meter-container scroll-animate-scale">
+                <div class="love-meter-header">
+                    <h3>💖 Interactive Love Meter 💖</h3>
+                    <p>Click the heart to see our connection!</p>
+                </div>
+
+                <div class="love-meter-main">
+                    <div class="couple-avatars">
+                        <div class="avatar nick">
+                            <div class="avatar-circle">👨‍💻</div>
+                            <span>Nick</span>
+                        </div>
+
+                        <div class="love-heart-center" id="love-heart-button">
+                            <div class="heart-pulse">💖</div>
+                            <div class="connection-line"></div>
+                        </div>
+
+                        <div class="avatar anjali">
+                            <div class="avatar-circle">👩‍⚕️</div>
+                            <span>Anjali</span>
+                        </div>
+                    </div>
+
+                    <div class="love-stats" id="love-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Chemistry</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-value="100"></div>
+                                </div>
+                                <span class="stat-value">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-icon">💫</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Connection</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-value="100"></div>
+                                </div>
+                                <span class="stat-value">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-icon">🌟</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Happiness</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-value="100"></div>
+                                </div>
+                                <span class="stat-value">100%</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item love-level-center">
+                            <div class="stat-icon">💕</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Love Level</span>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" data-value="100"></div>
+                                </div>
+                                <span class="stat-value">∞%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="love-result" id="love-result">
+                        <div class="result-text">
+                            <h4>💖 Perfect Soulmates! 💖</h4>
+                            <p>Your love connection is off the charts! You two are absolutely meant for each other. 🌟
+                            </p>
+                        </div>
+                        <div class="floating-hearts" id="floating-hearts"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Countdown & Future Plans -->
+        <section id="future" class="section">
+            <h2 class="scroll-animate">⏰ Time Since Our Anniversary & Our Future 🔮</h2>
+            <div class="countdown">
+                <div class="cd-item scroll-animate-scale"><span id="days">00</span><small>📅 Days</small></div>
+                <div class="cd-item scroll-animate-scale"><span id="hours">00</span><small>⏰ Hours</small></div>
+                <div class="cd-item scroll-animate-scale"><span id="minutes">00</span><small>⏱️ Minutes</small></div>
+                <div class="cd-item scroll-animate-scale"><span id="seconds">00</span><small>⚡ Seconds</small></div>
+            </div>
+            <div class="future-plans scroll-animate">
+                <h3>🌟 Our Future Dreams 🌟</h3>
+                <ul>
+                    <li>🏝️ Trip to Santorini with ocean sunrises 🌅</li>
+                    <li>🏠 A cozy home with plants and music 🎵🌿</li>
+                    <li>👩‍🍳 Learning a new recipe together every month 🍳</li>
+                    <li>📸 More pictures, more laughs, more love 😂💕</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Secret Surprise Section -->
+        <section id="secret" class="section">
+            <h2 class="scroll-animate">🔐 Secret Surprise 🔐</h2>
+            <p class="scroll-animate">🗝️ Enter our special date to unlock:</p>
+            <div class="secret-lock scroll-animate">
+                <input id="secret-input" type="password" placeholder="DDMMYYYY format..."
+                    aria-label="Enter special date">
+                <button id="secret-unlock" class="btn">🔓 Unlock</button>
+            </div>
+            <div id="secret-content" class="secret-content" hidden>
+                <h3>👀 For Your Eyes Only 💖</h3>
+                <p>You are the poem I never knew how to write and this life is the story I have always wanted to
+                    tell—with you.
+                    📖✨💕</p>
+                <!-- Replace with your special video or message -->
+                <video controls src="./assets/videos/Surprice.mp4"></video>
+            </div>
+        </section>
+
+        <!-- Final Page -->
+        <section id="final" class="section">
+            <h2 class="scroll-animate">🎉 The Final Surprise 🎉</h2>
+            <p class="scroll-animate">Press the button below!</p>
+            <button id="final-button" class="btn primary scroll-animate-scale">Press this button 💥</button>
+            <div id="final-message" class="final-message" hidden>
+                <h3>Forever is my favorite place because you're there. 💞</h3>
+                <p>Thank you for choosing me—today and always.</p>
+                <div class="certificate-section">
+                    <p>🎓 Download your special certificate of our love! 💖</p>
+                    <button id="download-certificate" class="btn secondary">📜 Download Love Certificate 📜</button>
+                </div>
+
+                <div id="confetti-layer" aria-hidden="true"></div>
+                <div id="balloon-layer" aria-hidden="true"></div>
+        </section>
+
+        <footer>
+            <small>Made with love by Nick • © <span id="year"></span></small>
+        </footer>
+
+        <script src="./script.js"></script>
+</body>
+
+</html>
