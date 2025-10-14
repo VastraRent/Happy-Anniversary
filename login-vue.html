@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 A Special Question 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        :root {
+            --bg-primary: #0a0a12;
+            --bg-secondary: #1a1a2e;
+            --surface: #1f1f35;
+            --surface-elevated: #262641;
+            --pink: #ff6b9d;
+            --rose: #ff9a9e;
+            --purple: #c471ed;
+            --blue: #12c2e9;
+            --accent: #ffeaa7;
+            --text: #ffffff;
+            --text-secondary: #b8bcc8;
+            --muted: #8892a6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(196, 113, 237, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 157, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(18, 194, 233, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            background-attachment: fixed;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        #app {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+
+
+        .question-header {
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .question-header h1 {
+            font-size: clamp(36px, 6vw, 52px);
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            font-weight: 700;
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        .question-text {
+            font-size: clamp(22px, 4vw, 28px);
+            color: var(--text);
+            margin-bottom: 15px;
+            font-weight: 600;
+            animation: slideInFromLeft 0.8s ease-out 0.3s both;
+        }
+
+        .question-subtext {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-style: italic;
+            animation: slideInFromRight 0.8s ease-out 0.6s both;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 600px) {
+            .buttons-container {
+                flex-direction: row;
+                justify-content: center;
+                gap: 40px;
+            }
+        }
+
+        .btn {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: static;
+            overflow: hidden;
+            min-width: 220px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+            animation: slideInFromLeft 0.8s ease-out 0.9s both;
+        }
+
+        .btn-yes:hover {
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.6);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+            transition: all 0.3s ease;
+            animation: slideInFromRight 0.8s ease-out 0.9s both;
+            position: static;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px) scale(0.98);
+            box-shadow: 0 12px 35px rgba(108, 117, 125, 0.6);
+        }
+
+        .btn-no.running-away {
+            z-index: 1000;
+        }
+
+        .btn-no.caught {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            animation: celebrate 0.5s ease-out;
+        }
+
+        .btn-no.caught.clicked {
+            animation: shrinkButton 0.6s ease-in-out forwards;
+        }
+
+        /* Progressive shrinking levels */
+        .btn-no.shrink-1 {
+            transform: scale(0.9);
+        }
+
+        .btn-no.shrink-2 {
+            transform: scale(0.8);
+        }
+
+        .btn-no.shrink-3 {
+            transform: scale(0.7);
+        }
+
+        .btn-no.shrink-4 {
+            transform: scale(0.6);
+        }
+
+        .btn-no.shrink-5 {
+            transform: scale(0.5);
+        }
+
+        .btn-no.shrink-6 {
+            transform: scale(0.4);
+        }
+
+        .btn-no.shrink-7 {
+            transform: scale(0.3);
+        }
+
+        .btn-no.shrink-8 {
+            transform: scale(0.25);
+        }
+
+        .btn-no.shrink-9 {
+            transform: scale(0.2);
+        }
+
+        .btn-no.shrink-10 {
+            transform: scale(0.15);
+        }
+
+        .btn-no.shrink-11 {
+            transform: scale(0.1);
+        }
+
+        .btn-no.shrink-12 {
+            transform: scale(0.05);
+        }
+
+        /* Add a pulsing effect for very small buttons */
+        .btn-no.shrink-8,
+        .btn-no.shrink-9,
+        .btn-no.shrink-10,
+        .btn-no.shrink-11,
+        .btn-no.shrink-12 {
+            animation: tinyPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes tinyPulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Secret Surprise Styles */
+        .secret-hint {
+            margin-top: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .secret-hint:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .hint-text {
+            animation: secretGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes secretGlow {
+            0% {
+                text-shadow: 0 0 5px rgba(255, 234, 167, 0.5);
+            }
+
+            100% {
+                text-shadow: 0 0 15px rgba(255, 234, 167, 0.8);
+            }
+        }
+
+        .secret-input-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 20px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .secret-input {
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 234, 167, 0.5);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 16px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .secret-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(255, 234, 167, 0.3);
+        }
+
+        .secret-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .secret-btn {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #f39c12);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secret-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 234, 167, 0.4);
+        }
+
+        .secret-popup-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: 3px solid rgba(255, 234, 167, 0.6);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+            animation: secretReveal 1s ease-out;
+        }
+
+        @keyframes secretReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotateY(180deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+            }
+        }
+
+        .secret-title {
+            color: var(--accent);
+            font-size: 28px;
+            margin-bottom: 30px;
+            animation: secretTitleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes secretTitleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(255, 234, 167, 0.6);
+            }
+
+            100% {
+                text-shadow: 0 0 30px rgba(255, 234, 167, 1);
+            }
+        }
+
+        .secret-message {
+            margin: 30px 0;
+        }
+
+        .secret-date {
+            font-size: 24px;
+            color: var(--pink);
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: dateGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes dateGlow {
+            0% {
+                color: var(--pink);
+            }
+
+            100% {
+                color: var(--purple);
+            }
+        }
+
+        .secret-text,
+        .secret-reveal,
+        .secret-final {
+            font-size: 18px;
+            color: var(--text);
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .secret-final {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            animation: finalGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes finalGlow {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        .floating-hearts-secret {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .secret-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: secretHeartFloat 3s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .secret-heart:nth-child(2n) {
+            animation-delay: 0.5s;
+        }
+
+        .secret-heart:nth-child(3n) {
+            animation-delay: 1s;
+        }
+
+        .secret-heart:nth-child(4n) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes secretHeartFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        .secret-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: secretSparkle 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(2n) {
+            animation-delay: 0.3s;
+        }
+
+        .sparkle:nth-child(3n) {
+            animation-delay: 0.6s;
+        }
+
+        .sparkle:nth-child(4n) {
+            animation-delay: 0.9s;
+        }
+
+        .sparkle:nth-child(5n) {
+            animation-delay: 1.2s;
+        }
+
+        @keyframes secretSparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
+        .secret-close-btn {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .secret-close-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.5);
+        }
+
+        .timer-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(196, 113, 237, 0.9));
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 100;
+            animation: zoomIn 0.6s ease-out;
+        }
+
+        .funny-message {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(196, 113, 237, 0.1));
+            border-radius: 16px;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .funny-message h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .funny-message p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .try-again-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .try-again-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(18, 194, 233, 0.4);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+            border: 2px solid rgba(255, 107, 157, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            animation: popIn 0.4s ease-out;
+        }
+
+        .popup-content h2 {
+            color: var(--accent);
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .popup-content p {
+            color: var(--text);
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .popup-btn {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+        }
+
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.4;
+            animation: floatHeartSimple 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            50% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        @keyframes floatHeartSimple {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-20px);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes shrinkButton {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes celebrate {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: scale(1.1) rotate(5deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+
+            75% {
+                transform: scale(1.1) rotate(3deg);
+            }
+        }
+
+        @keyframes rainbow {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            25% {
+                filter: hue-rotate(90deg);
+            }
+
+            50% {
+                filter: hue-rotate(180deg);
+            }
+
+            75% {
+                filter: hue-rotate(270deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+            }
+
+            50% {
+                text-shadow: 0 0 30px rgba(255, 107, 157, 0.8), 0 0 40px rgba(196, 113, 237, 0.6);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-15px);
+            }
+
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(3deg);
+            }
+
+            75% {
+                transform: rotate(-3deg);
+            }
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
+        @keyframes backgroundShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes textGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            14% {
+                transform: scale(1.1);
+            }
+
+            28% {
+                transform: scale(1);
+            }
+
+            42% {
+                transform: scale(1.1);
+            }
+
+            70% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px) scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Removed particle effects for better performance */
+
+        /* Removed for performance */
+
+        /* Removed shooting stars for better performance */
+
+        /* Removed for performance */
+
+        /* Removed morphing shapes for better performance */
+
+        /* Removed for performance */
+
+        /* Enhanced button hover effects */
+        .btn-yes::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-yes:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Magical sparkles */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: sparkleAnimation 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkleAnimation {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
+        /* Pulsing glow effect for containers */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+            animation: pulseGlow 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Enhanced text animations */
+        .question-header h1 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-header h1::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: textShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                left: -100%;
+            }
+
+            50% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            animation: floatingElement 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatingElement {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+
+            66% {
+                transform: translateY(-10px) rotate(240deg);
+            }
+        }
+
+        /* Vue transitions */
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+            transform: scale(0.9) rotateX(90deg);
+        }
+
+        .slide-enter-active,
+        .slide-leave-active {
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-enter-from,
+        .slide-leave-to {
+            opacity: 0;
+            transform: translateY(50px) scale(0.8) rotateX(45deg);
+        }
+
+        /* Magical cursor trail */
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--pink), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: cursorTrail 1s ease-out forwards;
+        }
+
+        @keyframes cursorTrail {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="hearts-bg" ref="heartsContainer"></div>
+
+        <div class="timer-display" v-show="isButtonRunning">
+            ⏰ Button will stop running in: <span>{{ timeLeft }}</span>s
+        </div>
+
+        <div class="login-container" ref="container">
+            <div class="question-header">
+                <h1>💕 A Special Question 💕</h1>
+                <p class="question-text">Will you go out on a date with me?</p>
+                <p class="question-subtext">Choose wisely... 😉</p>
+
+                <!-- Secret Surprise Input -->
+                <div class="secret-input-container" v-show="showSecretInput">
+                    <input type="password" class="secret-input" v-model="secretPassword"
+                        @keyup.enter="checkSecretPassword" placeholder="🔐 Enter secret code..." maxlength="8">
+                    <button class="secret-btn" @click="checkSecretPassword">🔓</button>
+                </div>
+
+                <!-- Secret Hint -->
+                <div class="secret-hint" @click="toggleSecretInput">
+                    <span class="hint-text">✨ Something special awaits... ✨</span>
+                </div>
+            </div>
+
+            <div class="buttons-container">
+                <button class="btn btn-yes" @click="handleYesClick">
+                    💖 Yes! Absolutely! 💖
+                </button>
+                <button class="btn btn-no" :class="{ 
+                    'running-away': isButtonRunning, 
+                    'caught': buttonCaught, 
+                    'clicked': buttonClicked,
+                    [`shrink-${buttonShrinkLevel}`]: buttonShrinkLevel > 0 && !isButtonRunning
+                }" :style="buttonStyle" @click="handleNoClick" ref="noButton">
+                    {{ buttonCaught ? getShrinkingButtonText() : '😅 No, thanks' }}
+                </button>
+            </div>
+
+            <transition name="slide">
+                <div class="funny-message" v-if="showFunnyMessage">
+                    <h3>{{ currentResponse.title }}</h3>
+                    <p>{{ currentResponse.text }}</p>
+                    <button class="try-again-btn" @click="handleTryAgain">Try Again? 🥺</button>
+                </div>
+            </transition>
+        </div>
+
+        <transition name="fade">
+            <div class="popup-overlay" v-if="showPopup" @click="handlePopupClose">
+                <div class="popup-content" @click.stop>
+                    <h2>😏 Psst... Secret Tip!</h2>
+                    <p>Next time try the "No" button for some fun surprises! 😉</p>
+                    <button class="popup-btn" @click="handlePopupClose">Got it! Let's go! 🚀</button>
+                </div>
+            </div>
+        </transition>
+
+        <!-- Secret Surprise Popup -->
+        <transition name="fade">
+            <div class="popup-overlay" v-if="showSecretSurprise" @click="closeSecretSurprise">
+                <div class="secret-popup-content" @click.stop>
+                    <div class="secret-animation">
+                        <div class="floating-hearts-secret">
+                            <span v-for="n in 20" :key="n" class="secret-heart">💖</span>
+                        </div>
+                        <h2 class="secret-title">🎉 SECRET UNLOCKED! 🎉</h2>
+                        <div class="secret-message">
+                            <p class="secret-date">📅 October 18, 2024</p>
+                            <p class="secret-text">✨ This date holds something magical! And Key to next Lock ✨</p>
+                            <p class="secret-reveal">💕 A special memory was created on this day... 💕</p>
+                            <p class="secret-final">🌟 The day our story began! 🌟</p>
+                        </div>
+                        <div class="secret-effects">
+                            <div class="sparkle" v-for="n in 15" :key="n"></div>
+                        </div>
+                        <button class="secret-close-btn" @click="closeSecretSurprise">
+                            💫 Keep This Secret 💫
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted, onUnmounted, nextTick } = Vue;
+
+        createApp({
+            setup() {
+                const timeLeft = ref(20);
+                const isButtonRunning = ref(true);
+                const noClickCount = ref(0);
+                const showFunnyMessage = ref(false);
+                const showPopup = ref(false);
+                const buttonPosition = ref({ x: 0, y: 0 });
+                const buttonCaught = ref(false);
+                const buttonClicked = ref(false);
+                const buttonShrinkLevel = ref(0);
+                const showSecretInput = ref(false);
+                const secretPassword = ref('');
+                const showSecretSurprise = ref(false);
+
+                const container = ref(null);
+                const noButton = ref(null);
+                const heartsContainer = ref(null);
+                const particlesContainer = ref(null);
+                const shapesContainer = ref(null);
+
+                let timerInterval = null;
+
+                const funnyResponses = [
+                    { title: "🤔 Really?", text: "Are you sure about that? I mean, I'm pretty awesome... 😎 (Notice how I'm getting smaller? That's your guilt shrinking me!)" },
+                    { title: "😱 Wait, what?", text: "Did you accidentally click the wrong button? It happens to the best of us! 😅 (I'm literally shrinking from embarrassment!)" },
+                    { title: "🕵️ Hmm...", text: "I think there might be a bug in your decision-making process. Let me help you fix that! 🔧 (Why am I getting tinier with each click?!)" },
+                    { title: "🎭 Plot Twist!", text: "What if I told you that 'No' actually means 'Yes' in some parallel universe? 🌌 (I'm shrinking into that universe!)" },
+                    { title: "🤖 Error 404", text: "Good choice not found. Please try again with a better decision! 😂 (Error: Button.exe is shrinking!)" },
+                    { title: "🎪 Fun Fact:", text: "Studies show that 99.9% of people who click 'No' immediately regret it. Don't be a statistic! 📊 (I'm becoming a micro-statistic!)" },
+                    { title: "🎯 Last Chance!", text: "This is your final warning before I start crying... and trust me, it's not pretty! 😭 (I'm crying myself smaller!)" },
+                    { title: "🚨 Alert!", text: "You're about to miss out on the best date of your life! This is not a drill! 🚁 (MAYDAY! Button is shrinking!)" },
+                    { title: "🔬 Microscopic!", text: "I'm so small now, you need a magnifying glass to see me! 🔍 (This is what rejection does to a button!)" },
+                    { title: "🐜 Ant-sized!", text: "I'm smaller than an ant now! Even the ants are laughing at me! 🐜😂 (Please stop, I have a family!)" },
+                    { title: "⚛️ Atomic Level!", text: "I've reached atomic level! Scientists are studying me! ⚛️🧪 (This is not what I meant by chemistry!)" },
+                    { title: "🌌 Quantum Realm!", text: "I've entered the quantum realm! I exist and don't exist at the same time! 🌌😵 (Schrödinger's Button!)" }
+                ];
+
+                const currentResponse = computed(() => {
+                    return funnyResponses[noClickCount.value % funnyResponses.length];
+                });
+
+                const buttonStyle = computed(() => {
+                    if (isButtonRunning.value && buttonPosition.value.x !== 0 && buttonPosition.value.y !== 0) {
+                        return {
+                            position: 'fixed',
+                            left: buttonPosition.value.x + 'px',
+                            top: buttonPosition.value.y + 'px'
+                        };
+                    }
+                    return {
+                        position: 'static'
+                    };
+                });
+
+                const startTimer = () => {
+                    timerInterval = setInterval(() => {
+                        if (timeLeft.value > 0) {
+                            timeLeft.value--;
+                        } else {
+                            isButtonRunning.value = false;
+                            buttonCaught.value = true;
+                            clearInterval(timerInterval);
+                        }
+                    }, 1000);
+                };
+
+                const handleMouseMove = (e) => {
+                    if (!isButtonRunning.value || !noButton.value) return;
+
+                    const rect = noButton.value.getBoundingClientRect();
+
+                    const mouseX = e.clientX;
+                    const mouseY = e.clientY;
+
+                    const btnCenterX = rect.left + rect.width / 2;
+                    const btnCenterY = rect.top + rect.height / 2;
+
+                    const distance = Math.sqrt(
+                        Math.pow(mouseX - btnCenterX, 2) + Math.pow(mouseY - btnCenterY, 2)
+                    );
+
+                    if (distance < 100) {
+                        const angle = Math.atan2(btnCenterY - mouseY, btnCenterX - mouseX);
+                        const runDistance = 150;
+
+                        let newX = rect.left + Math.cos(angle) * runDistance;
+                        let newY = rect.top + Math.sin(angle) * runDistance;
+
+                        // Keep button within viewport bounds
+                        const viewportPadding = 20;
+                        const btnWidth = rect.width;
+                        const btnHeight = rect.height;
+                        const viewportWidth = window.innerWidth;
+                        const viewportHeight = window.innerHeight;
+
+                        newX = Math.max(viewportPadding, Math.min(viewportWidth - btnWidth - viewportPadding, newX));
+                        newY = Math.max(viewportPadding, Math.min(viewportHeight - btnHeight - viewportPadding, newY));
+
+                        buttonPosition.value = { x: newX, y: newY };
+                    }
+                };
+
+                const createFloatingHearts = () => {
+                    if (!heartsContainer.value) return;
+
+                    const hearts = ['💕', '💖', '💗', '💝', '💘', '❤️'];
+
+                    // Reduced to only 8 hearts for better performance
+                    for (let i = 0; i < 8; i++) {
+                        const heart = document.createElement('div');
+                        heart.className = 'floating-heart';
+                        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.top = Math.random() * 100 + '%';
+                        heart.style.animationDelay = Math.random() * 6 + 's';
+                        heart.style.animationDuration = '6s';
+                        heart.style.fontSize = '18px';
+                        heartsContainer.value.appendChild(heart);
+                    }
+                };
+
+                const handleYesClick = () => {
+                    showPopup.value = true;
+                };
+
+                const handleNoClick = () => {
+                    if (!isButtonRunning.value) {
+                        // Increase shrink level with each click
+                        buttonShrinkLevel.value++;
+
+                        // Show message immediately
+                        showFunnyMessage.value = true;
+                        noClickCount.value++;
+
+                        // Add a little shake effect for very small buttons
+                        if (buttonShrinkLevel.value > 6) {
+                            const button = noButton.value;
+                            if (button) {
+                                button.style.animation = 'shake 0.3s ease-in-out';
+                                setTimeout(() => {
+                                    button.style.animation = '';
+                                }, 300);
+                            }
+                        }
+                    }
+                };
+
+                const handleTryAgain = () => {
+                    showFunnyMessage.value = false;
+                    noClickCount.value = 0;
+                    buttonClicked.value = false;
+                    buttonShrinkLevel.value = 0;
+                };
+
+                const getShrinkingButtonText = () => {
+                    const texts = [
+                        '😅 Fine, you can click me now',
+                        '😰 I\'m getting smaller!',
+                        '😱 Stop clicking me!',
+                        '🥺 Please have mercy!',
+                        '😵 I\'m shrinking!',
+                        '🔍 Need a magnifying glass?',
+                        '🐜 I\'m ant-sized now!',
+                        '⚛️ Entering quantum realm!',
+                        '👻 Almost invisible!',
+                        '🌌 I\'m in another dimension!',
+                        '🔬 Microscopic button!',
+                        '💫 I\'m stardust now!'
+                    ];
+                    return texts[Math.min(buttonShrinkLevel.value, texts.length - 1)] || texts[0];
+                };
+
+                const toggleSecretInput = () => {
+                    showSecretInput.value = !showSecretInput.value;
+                    if (showSecretInput.value) {
+                        nextTick(() => {
+                            const input = document.querySelector('.secret-input');
+                            if (input) input.focus();
+                        });
+                    }
+                };
+
+                const checkSecretPassword = () => {
+                    if (secretPassword.value === '15102024') {
+                        showSecretSurprise.value = true;
+                        showSecretInput.value = false;
+                        secretPassword.value = '';
+
+                        // Position sparkles randomly
+                        nextTick(() => {
+                            const sparkles = document.querySelectorAll('.sparkle');
+                            sparkles.forEach(sparkle => {
+                                sparkle.style.left = Math.random() * 100 + '%';
+                                sparkle.style.top = Math.random() * 100 + '%';
+                                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                            });
+
+                            // Position secret hearts randomly
+                            const hearts = document.querySelectorAll('.secret-heart');
+                            hearts.forEach(heart => {
+                                heart.style.left = Math.random() * 100 + '%';
+                                heart.style.top = Math.random() * 100 + '%';
+                                heart.style.animationDelay = Math.random() * 3 + 's';
+                            });
+                        });
+                    } else {
+                        // Wrong password - shake the input
+                        const input = document.querySelector('.secret-input');
+                        if (input) {
+                            input.style.animation = 'shake 0.5s ease-in-out';
+                            setTimeout(() => {
+                                input.style.animation = '';
+                            }, 500);
+                        }
+                        secretPassword.value = '';
+                    }
+                };
+
+                const closeSecretSurprise = () => {
+                    showSecretSurprise.value = false;
+                };
+
+                const handlePopupClose = () => {
+                    window.location.href = 'index.html';
+                };
+
+                onMounted(() => {
+                    startTimer();
+                    createFloatingHearts();
+                    document.addEventListener('mousemove', handleMouseMove);
+                });
+
+                onUnmounted(() => {
+                    if (timerInterval) {
+                        clearInterval(timerInterval);
+                    }
+                    document.removeEventListener('mousemove', handleMouseMove);
+                });
+
+                return {
+                    timeLeft,
+                    isButtonRunning,
+                    noClickCount,
+                    showFunnyMessage,
+                    showPopup,
+                    buttonPosition,
+                    buttonCaught,
+                    buttonClicked,
+                    buttonShrinkLevel,
+                    showSecretInput,
+                    secretPassword,
+                    showSecretSurprise,
+                    container,
+                    noButton,
+                    heartsContainer,
+                    currentResponse,
+                    buttonStyle,
+                    getShrinkingButtonText,
+                    toggleSecretInput,
+                    checkSecretPassword,
+                    closeSecretSurprise,
+                    handleYesClick,
+                    handleNoClick,
+                    handleTryAgain,
+                    handlePopupClose
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
