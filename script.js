@@ -1166,16 +1166,24 @@ function handleQuizSubmission() {
 
     // Check answers
     const correctAnswers = {
-        'q1': 'italian',
-        'q2': 'NYC',
-        'q3': 'Harry Potter',
-        'q4': 'Your Voice',
-        'q5': 'sunset'
+        'q1': 'you',
+        'q2': 'santorini',
+        'q3': 'hp',
+        'q4': 'all',
+        'q5': ['morning', 'sunset', 'night'] // All options are correct for question 5
     };
 
     for (let [question, correctAnswer] of Object.entries(correctAnswers)) {
-        if (formData.get(question) === correctAnswer) {
-            score++;
+        const userAnswer = formData.get(question);
+        if (Array.isArray(correctAnswer)) {
+            // For question 5, all answers are correct
+            if (correctAnswer.includes(userAnswer)) {
+                score++;
+            }
+        } else {
+            if (userAnswer === correctAnswer) {
+                score++;
+            }
         }
     }
 
